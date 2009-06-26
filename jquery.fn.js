@@ -12,12 +12,12 @@
     }
   }
   function define(self, name, fn) {
-    self.data(namespacedName(name), fn);
+    self.data('fn.' + name, fn);
   };
   function apply(self, name, args) {
     var result;
     self.each(function(i, item) {
-      var fn = $(item).data(namespacedName(name));
+      var fn = $(item).data('fn.' + name);
       if (fn)
         result = fn.apply(item, args);
       else
@@ -25,7 +25,4 @@
     });
     return result;
   };
-  function namespacedName(name) {
-    return 'fn.' + name;
-  }
 })(jQuery);
